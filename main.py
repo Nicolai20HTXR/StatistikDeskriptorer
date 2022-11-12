@@ -173,29 +173,48 @@ class dataSæt:
         stats['A']['q1'], stats['A']['q3'], stats['A']['whishi'], stats['A']['whislo'] = [
             self.kvartiler()[0], self.kvartiler()[-1], self.maksimum(), self.minimum()]
 
-        fig, ax = plt.subplots(1, 1)
+        fig, ax = plt.subplots()
         ax.bxp([stats['A']], positions=range(1), showfliers=False, vert=False)
         xTicksSpacing = int(self.variationsbredde()/10)
-        plt.xticks(range(self.minimum()-xTicksSpacing,self.maksimum()+xTicksSpacing, xTicksSpacing))
-
+        #plt.xticks(range(self.minimum()-xTicksSpacing,self.maksimum()+xTicksSpacing, xTicksSpacing))
+        ax.set_xticks(range(self.minimum(),self.maksimum()+xTicksSpacing, xTicksSpacing))
         plt.draw()
 
     def histogram(self):
         """histogram fra matplotlib, kør visGraf() metode for at vise denne graf efter at havet kaldet den"""
         keys = list(self.hyppighed().keys())
         values = list(self.hyppighed().values())
-
+        
         fig, ax = plt.subplots()
 
         # create the xticks locations
         x = range(len(keys))
-
         ax.bar(x, values, 0.8, align='center')
 
         # set the ticks and labels
         ax.set_xticks(x)
         ax.set_xticklabels(keys)
         
+        plt.draw()
+
+    def sumKurve(self):
+        #Kurvegraf fra kumuleret frekevens
+        kumFrekvensDict = self.kumFrekvens()
+        x = list(kumFrekvensDict.keys())
+        y = list(kumFrekvensDict.values())
+        #y akse går fra 0 til 1
+        for i in range(len(y)):
+            y[i]=y[i]/100
+
+        fig, ax = plt.subplots()
+        
+        ax = plt.subplot()
+        
+        ax.plot(x,y)
+        ax.set_xlim((x[0],x[-1]))
+        ax.set_ylim(0,1)
+        ax.grid()
+
         plt.draw()
 
     def visGraf(self):
@@ -227,5 +246,6 @@ x = dataSæt([0, 2, 2, 2, 4, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 10, 10, 10, 
 x.deskriptorer()
 x.histogram()
 x.boksplot()
+x.sumKurve()
 x.visGraf()
 
