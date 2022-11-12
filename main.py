@@ -240,7 +240,8 @@ class dataSæt:
         print("Kumuleret Hyppighed Dict: " + str(self.kumHyppighed()))
         print("Frekvens Dict: " + str(self.frekvens()))
         print("Kumuleret Frekvens Dict: " + str(self.kumFrekvens()))
-
+        
+#Datasæt fra opgave 7.1 Statistik i matematik B HTX bog
 x = dataSæt([0, 2, 2, 2, 4, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 10, 10, 10, 10, 12, 12, 12, 12, 12], True)
 
 x.deskriptorer()
