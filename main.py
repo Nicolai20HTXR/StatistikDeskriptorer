@@ -49,7 +49,7 @@ class dataSæt:
     def skævhed(self, nummerReturn=False):
         """Printer ud skævhed, kan slå til hvis man ville have værdi af skævhed"""
         # Skævhed regnes og kan printes eller returnere en værdi som enten går minus, 0 eller positiv
-        skævhedværdi = self.middelværdi() > self.median()
+        skævhedværdi = self.middelværdi() - self.median()
         if nummerReturn:
             return skævhedværdi
         else:
